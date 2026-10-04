@@ -2,9 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links on the Go</title>
 </head>
 <body>
+    <header>
+        <h1>Links on the go</h1>
+    </header>
+    <div class="container">
+        <div class="select-user">
+            <label for="user-select">Select a user:</label>
+            <select name="user" id="user-select">
+                <option value="">Please select a user</option>
+                <option value="user1">user1</option>
+                <option value="user2">user2</option>
+                <option value="user3">user3</option>
+                <option value="user4">user4</option>
+                <option value="user5">user5</option>
+            </select>
+        </div>
+        <form id="bookmark-form">
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input
+                        type="url"
+                        name="url"
+                        id="url"
+                        placeholder="https://example.com"
+                        size="30"
+                        required />
 
+            </div>
+            <div class="form-group">
+                <label for="bookmark-description">Description:</label>
+            <textarea
+                    name="description"
+                    id="bookmark-description"
+                    placeholder="Enter a short description"
+                    required
+            ></textarea>
+
+            </div>
+            <div class="form-group"></div>
+
+        </form>
+    </div>
 </body>
 </html>
