@@ -2,9 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links on the Go</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<header>
+    <h1>Links on the Go</h1>
+</header>
+<main>
+    <section class="user-selection" aria-labelledby="user-selection-heading">
+        <h2 id="user-selection-heading">Choose a user</h2>
 
+        <label for="user-select">Select a user:</label>
+
+        <select name="user" id="user-select">
+            <option value="">Please select a user</option>
+        </select>
+    </section>
+
+    <section class="bookmarks" aria-labelledby="bookmarks-heading">
+        <h2 id="bookmarks-heading">Bookmarks</h2>
+
+        <p id="empty-message"></p>
+
+        <div id="bookmark-list">
+            <!-- Bookmarks will be added here in JavaScript -->
+        </div>
+    </section>
+
+    <section class="add-bookmark" aria-labelledby="add-bookmark-heading">
+            <h2 id="add-bookmark-heading">Add a bookmark</h2>
+
+            <form id="bookmark-form">
+
+                <div class="form-group">
+                    <label for="url">URL</label>
+
+                    <input
+                            type="url"
+                            name="url"
+                            id="url"
+                            placeholder="https://example.com"
+                            required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+
+                    <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            placeholder="Enter a title"
+                            required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="bookmark-description">Description</label>
+
+                    <textarea
+                            name="description"
+                            id="bookmark-description"
+                            placeholder="Enter a short description"
+                            required
+                    ></textarea>
+                </div>
+
+
+                <button type="submit">
+                    Add bookmark
+                </button>
+
+            </form>
+    </section>
+</main>
 </body>
 </html>
