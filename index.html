@@ -26,9 +26,19 @@
 
         <p id="empty-message"></p>
 
-        <div id="bookmark-list">
-            <!-- Bookmarks will be added here in JavaScript -->
+        <div id="bookmarks">
         </div>
+        <template id="bookmark-template">
+            <article class="bookmark-card">
+                <h2>
+                    <a class="bookmark-title" href=""></a>
+                </h2>
+                <p class="bookmark-description"></p>
+                <p class="bookmark-date"></p>
+                <button class="copy-url">Copy URL</button>
+                <button class="like-button">Like <span class="like-count">0</span></button>
+            </article>
+        </template>
     </section>
 
     <section class="add-bookmark" aria-labelledby="add-bookmark-heading">
