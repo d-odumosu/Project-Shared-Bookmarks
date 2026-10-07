@@ -17,8 +17,12 @@ userIds.forEach(function (userId) {
     option.value = userId;
     option.textContent = `User ${userId}`;
 
-    userSelect.appendChild(option);
-});
+    if (bookmarks === null) {
+        emptyMessage.textContent = "This user has no bookmarks.";
+    } else {
+        bookmarks.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
 
 userSelect.addEventListener("change", function () {
     const userId = userSelect.value;
