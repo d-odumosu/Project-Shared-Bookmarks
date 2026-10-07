@@ -1,4 +1,4 @@
-import { getUserIds, getData, setData } from "./storage.js";
+import {getData, getUserIds, setData} from "./storage.js";
 
 const userSelect = document.querySelector("#user-select");
 const bookmarkForm = document.getElementById('bookmark-form')
@@ -44,11 +44,11 @@ bookmarkForm.addEventListener("submit", (event) => {
     const bookmarks = getData(userId) || []
     bookmarks.push(bookmark)
     setData(userId,bookmarks)
-    displayBookmarks(bookmarks)
+    displayBookmarks(bookmarks, userId)
 
 })
 
-function displayBookmarks(bookmarks){
+function displayBookmarks(bookmarks, userId){
     bookmarks.forEach((bookmark => {
        const bookmarkClone = bookmarkTemplate.content.cloneNode(true)
         const bookmarkTitle = bookmarkClone.querySelector(".bookmark-title");
@@ -56,7 +56,7 @@ function displayBookmarks(bookmarks){
         const bookmarkDate = bookmarkClone.querySelector(".bookmark-date");
         const copyButton = bookmarkClone.querySelector(".copy-url");
         const likeButton = bookmarkClone.querySelector(".like-button");
-        const likeCount = bookmarkClone.querySelector('.like-count')
+        let likeCount = bookmarkClone.querySelector('.like-count')
 
         bookmarkTitle.textContent = bookmark.title
         bookmarkTitle.href = bookmark.url
@@ -80,6 +80,9 @@ function displayBookmarks(bookmarks){
         });
 
         likeButton.addEventListener("click", () => {
+            bookmark.likes++
+            likeCount.textContent = bookmark.likes
+            setData(userId, bookmarks)
 
         });
         bookmarksContainer.append(bookmarkClone)
