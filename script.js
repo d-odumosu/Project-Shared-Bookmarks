@@ -4,9 +4,10 @@ const userSelect = document.querySelector("#user-select");
 const bookmarkForm = document.getElementById('bookmark-form')
 const urlInput = document.querySelector("#url");
 const titleInput = document.querySelector("#title");
-const descriptionInput = document.querySelector("#description");
+const descriptionInput = document.querySelector("#bookmark-description");
 const bookmarkTemplate = document.querySelector("#bookmark-template");
 const bookmarksContainer = document.querySelector("#bookmarks");
+const emptyMessage = document.querySelector("#empty-message")
 
 const userIds = getUserIds();
 
@@ -23,7 +24,7 @@ userSelect.addEventListener("change", function () {
     const userId = userSelect.value;
     const bookmarks = getData(userId);
 
-    console.log(bookmarks);
+
 });
 
 // saving a bookmark
@@ -44,19 +45,25 @@ bookmarkForm.addEventListener("submit", (event) => {
     const bookmarks = getData(userId) || []
     bookmarks.push(bookmark)
     setData(userId,bookmarks)
-    displayBookmarks(bookmarks, userId)
+    renderBookmarks(bookmarks, userId)
 
 })
-
-function displayBookmarks(bookmarks, userId){
-    bookmarks.forEach((bookmark => {
-       const bookmarkClone = bookmarkTemplate.content.cloneNode(true)
+/**
+ * Creates a bookmark card from the bookmark template
+ * and adds it to the bookmarks' container.
+ *
+ * @param {Object} bookmark The bookmark to display
+ * @param {string} userId The user id the bookmark belongs to
+ * @param {Array} bookmarks The user's complete list of bookmarks
+ */
+function createBookmarkCard(bookmark, userId, bookmarks){
+        const bookmarkClone = bookmarkTemplate.content.cloneNode(true)
         const bookmarkTitle = bookmarkClone.querySelector(".bookmark-title");
         const bookmarkDescription = bookmarkClone.querySelector(".bookmark-description");
         const bookmarkDate = bookmarkClone.querySelector(".bookmark-date");
         const copyButton = bookmarkClone.querySelector(".copy-url");
         const likeButton = bookmarkClone.querySelector(".like-button");
-        let likeCount = bookmarkClone.querySelector('.like-count')
+        const likeCount = bookmarkClone.querySelector('.like-count')
 
         bookmarkTitle.textContent = bookmark.title
         bookmarkTitle.href = bookmark.url
@@ -86,5 +93,36 @@ function displayBookmarks(bookmarks, userId){
 
         });
         bookmarksContainer.append(bookmarkClone)
-    }))
+}
+/**
+ * Renders all bookmarks for a user.
+ *
+ * @param {Array} bookmarks The user's bookmarks
+ * @param {string} userId The user id the bookmarks belong to
+ */
+function renderBookmarks(bookmarks, userId){
+    bookmarks.forEach((bookmark) =>{
+        createBookmarkCard(bookmark, userId, bookmarks)
+    })
+}
+
+// helper functions
+
+/**
+ * Clears all bookmark cards from the bookmarks container.
+ */
+function clearBookmarks(){
+    bookmarksContainer.textContent = "";
+}
+/**
+ * Clears the empty bookmarks message.
+ */
+function clearMessage(){
+    emptyMessage.textContent = "";
+}
+/**
+ * Displays a message when a user has no bookmarks.
+ */
+function showEmptyMessage() {
+    emptyMessage.textContent = "This user has no bookmarks.";
 }
