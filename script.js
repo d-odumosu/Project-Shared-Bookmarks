@@ -44,16 +44,24 @@ bookmarkForm.addEventListener("submit", (event) => {
     const bookmarks = getData(userId) || []
     bookmarks.push(bookmark)
     setData(userId,bookmarks)
+    displayBookmarks(bookmarks)
 
 })
 
 function displayBookmarks(bookmarks){
     bookmarks.forEach((bookmark => {
        const bookmarkClone = bookmarkTemplate.content.cloneNode(true)
-        bookmarkClone.querySelector('.bookmark-title').textContent = bookmark.title
-        bookmarkClone.querySelector('.bookmark-title').href = bookmark.url
-        bookmarkClone.querySelector('.bookmark-description').textContent = bookmark.description
-        bookmarkClone.querySelector('.bookmark-date').textContent = new Date(bookmark.createdAt).
+        const bookmarkTitle = bookmarkClone.querySelector(".bookmark-title");
+        const bookmarkDescription = bookmarkClone.querySelector(".bookmark-description");
+        const bookmarkDate = bookmarkClone.querySelector(".bookmark-date");
+        const copyButton = bookmarkClone.querySelector(".copy-url");
+        const likeButton = bookmarkClone.querySelector(".like-button");
+        const likeCount = bookmarkClone.querySelector('.like-count')
+
+        bookmarkTitle.textContent = bookmark.title
+        bookmarkTitle.href = bookmark.url
+        bookmarkDescription.textContent = bookmark.description
+        bookmarkDate.textContent = new Date(bookmark.createdAt).
             toLocaleString("en-GB", {
             day: "numeric",
             month: "long",
@@ -61,11 +69,18 @@ function displayBookmarks(bookmarks){
             hour: "2-digit",
             minute: "2-digit"
         })
-        bookmarkClone.querySelector('.copy-url').addEventListener("click", () => {
-            //  function here
+        copyButton.addEventListener("click", () => {
+            navigator.clipboard.writeText(bookmark.url)
+                .then(() => {
+                    copyButton.textContent = 'Copied!'
+                })
+                .catch(() => {
+                    copyButton.textContent = "Copy failed";
+                })
         });
-        bookmarkClone.querySelector('.like-button').addEventListener("click", () => {
-            //  function here
+
+        likeButton.addEventListener("click", () => {
+
         });
         bookmarksContainer.append(bookmarkClone)
     }))
