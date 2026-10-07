@@ -54,7 +54,12 @@ textarea {
 }
 
 .bookmark-card {
-    margin-bottom: 35px;
+    max-width: 500px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #2b3033;
 }
 
 .bookmark-title {
