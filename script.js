@@ -8,6 +8,8 @@ const descriptionInput = document.querySelector("#bookmark-description");
 const bookmarkTemplate = document.querySelector("#bookmark-template");
 const bookmarksContainer = document.querySelector("#bookmarks");
 const emptyMessage = document.querySelector("#empty-message")
+const bookmarksSection = document.querySelector(".bookmarks");
+const addBookmarkSection = document.querySelector(".add-bookmark");
 
 const userIds = getUserIds();
 
@@ -22,6 +24,12 @@ userIds.forEach(function (userId) {
 userSelect.addEventListener("change", function () {
     const userId = userSelect.value;
     const bookmarks = getData(userId);
+    if(userId === ""){
+        switchView('non user')
+    }
+    else{
+        switchView('user')
+    }
     renderBookmarks(bookmarks, userId);
 
 });
@@ -141,3 +149,15 @@ userSelect.addEventListener("change", function () {
     function showEmptyMessage() {
         emptyMessage.textContent = "This user has no bookmarks.";
     }}
+
+    function switchView(view){
+        if(view === "non user"){
+            bookmarksSection.hidden = true
+            addBookmarkSection.hidden = true
+        }
+        if(view === "user"){
+            bookmarksSection.hidden = false
+            addBookmarkSection.hidden = false
+        }
+    }
+switchView("non user");
