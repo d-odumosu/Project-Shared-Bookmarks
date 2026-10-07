@@ -106,9 +106,11 @@ userSelect.addEventListener("change", function () {
     function renderBookmarks(bookmarks, userId) {
         clearBookmarks()
         clearMessage()
-        if (bookmarks === null) {
-            emptyMessage.textContent = "This user has no bookmarks.";
+        if (bookmarks === null || bookmarks.length === 0) {
+            showEmptyMessage()
+            return;
         }
+
         const bookmarksCopy = [...bookmarks]
         const sortedBookmarks = bookmarksCopy.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
