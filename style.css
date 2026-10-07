@@ -1,0 +1,118 @@
+/* General page styles */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: #202427;
+    color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+main,
+header {
+    width: 90%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+header {
+    padding-top: 30px;
+}
+h1 {
+    color: #d889f2;
+    font-size: 3.5rem;
+    margin: 0 0 40px;
+}
+h2 {
+    margin-top: 0;
+}
+/* User selection */
+.user-selection {
+    margin-bottom: 50px;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+select,
+input,
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #2b3033;
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* Bookmarks */
+.bookmarks {
+    margin-bottom: 50px;
+}
+
+.bookmark-card {
+    max-width: 500px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background-color: #2b3033;
+}
+
+.bookmark-title {
+    color: #9bb5ff;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.bookmark-title:hover {
+    text-decoration: underline;
+}
+
+.bookmark-description {
+    margin: 5px 0;
+}
+
+.bookmark-date {
+    color: #9bb5ff;
+    font-size: 0.9rem;
+}
+
+/* Buttons */
+button {
+    padding: 9px 14px;
+    margin-right: 8px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    background-color: #30363a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+button:hover {
+    background-color: #41484d;
+}
+
+/* Add bookmark form */
+.add-bookmark {
+    padding-bottom: 50px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Keyboard accessibility */
+button:focus,
+select:focus,
+input:focus,
+textarea:focus,
+a:focus {
+    outline: 3px solid #d889f2;
+    outline-offset: 2px;
+}
